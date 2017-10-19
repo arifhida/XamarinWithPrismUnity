@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="OneStop.Views.MainPage"
+             Title="1 Stop">
+    <Grid>
+        <Grid x:Name="SplashGrid" BackgroundColor="{StaticResource Primary}">
+            <Image x:Name="Logo" Source="icon" HorizontalOptions="Center" VerticalOptions="Center">
+                <Image.TranslationY>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <OnPlatform.Android>-12</OnPlatform.Android>
+                    </OnPlatform>
+                </Image.TranslationY>
+            </Image>
+        </Grid>
+    </Grid>
+</ContentPage>

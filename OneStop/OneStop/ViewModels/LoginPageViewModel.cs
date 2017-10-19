@@ -1,4 +1,5 @@
-﻿using OneStop.IServices;
+﻿using OneStop.Helpers;
+using OneStop.IServices;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -23,6 +24,8 @@ namespace OneStop.ViewModels
             _pageDialogService = pageDialogService;
             _authService = authService;
             OnLoginCommand = new DelegateCommand(async () => await Login());
+            if(!string.IsNullOrEmpty(Settings.access_token))
+                _navigationService.NavigateAsync("/Initial/Navigate/MainPage", null, false);
         }
 
         private string _Username;

@@ -6,8 +6,10 @@ namespace OneStop.Models
     {
         public string Title { get; set; }
 
-        public string IconSource { get; set; }        
+        public string IconSource { get; set; } 
+        
+        public string Navigation { get; set; }
 
-        public bool IsLoggedIn { get; set; }
+        public bool? IsLoggedIn { get; set; }
     }
 }

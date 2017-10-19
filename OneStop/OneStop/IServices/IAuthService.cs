@@ -10,6 +10,8 @@ namespace OneStop.IServices
     public interface IAuthService
     {
         Task<bool> LoginAsync(string Username, string Password);
-        Task<List<MasterItem>> GetMenus(bool isLogin);
+        List<MasterItem> GetMenus(bool isLogin);
+
+        //Task<bool> RegisterAsync()
     }
 }

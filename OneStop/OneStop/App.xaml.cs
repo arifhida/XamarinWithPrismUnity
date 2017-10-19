@@ -15,7 +15,7 @@ namespace OneStop
         {
             InitializeComponent();
 
-            NavigationService.NavigateAsync("Initial/Navigate/LoginPage");
+            NavigationService.NavigateAsync("Initial/Navigate/MainPage");
         }
 
         protected override void RegisterTypes()

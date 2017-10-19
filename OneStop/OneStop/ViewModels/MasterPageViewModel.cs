@@ -1,4 +1,6 @@
-﻿using OneStop.Models;
+﻿using OneStop.Helpers;
+using OneStop.IServices;
+using OneStop.Models;
 using OneStop.Views;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -13,6 +15,7 @@ namespace OneStop.ViewModels
     {
 
         private List<MasterItem> _listMenu;
+        IAuthService _authservice;
 
         public List<MasterItem> listMenu
         {
@@ -20,9 +23,11 @@ namespace OneStop.ViewModels
             set { _listMenu = value; }
         }
 
-        public MasterPageViewModel()
+        public MasterPageViewModel(IAuthService authservice)
         {
-             
+            _authservice = authservice;
+            var isLogin = !string.IsNullOrEmpty(Settings.access_token);
+            _listMenu = _authservice.GetMenus(isLogin);
         }
     }
 }

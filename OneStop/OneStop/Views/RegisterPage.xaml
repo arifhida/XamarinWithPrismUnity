@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OneStop.Views.RegisterPage">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <StackLayout.Padding>
+                <OnIdiom x:TypeArguments="Thickness">
+                    <OnIdiom.Phone>40,0,40,0</OnIdiom.Phone>
+                    <OnIdiom.Tablet>140,150,140,0</OnIdiom.Tablet>
+                </OnIdiom>
+            </StackLayout.Padding>
+            <Entry Text="{Binding Name}" Placeholder="Full Name"/>
+            <Entry Text="{Binding Email}" Placeholder="Email"/>
+            <Entry Text="{Binding Password}" Placeholder="Password"/>
+            <Entry Text="{Binding Confirmation}" Placeholder="Confirmation"/>
+            <Button Command="{Binding RegisterCommand}"
+                Text="Register" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

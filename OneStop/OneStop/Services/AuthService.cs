@@ -46,6 +46,23 @@ namespace OneStop.Services
 
             return response.IsSuccessStatusCode;
         }
+
+        public async Task<RegistrationResult> RegisterAsync(RegisterModel register)
+        {
+            var formData = new List<KeyValuePair<string, string>>();
+            formData.Add(new KeyValuePair<string, string>("email", register.email));
+            formData.Add(new KeyValuePair<string, string>("name", register.name));
+            formData.Add(new KeyValuePair<string, string>("password", register.password));
+            formData.Add(new KeyValuePair<string, string>("password_confirmation", register.password_confirmation));
+            var content = new FormUrlEncodedContent(formData);
+            var response = await client.PostAsync(string.Format("{0}/api/auth/register", url), content);
+            var stringContent = await response.Content.ReadAsStringAsync();
+            JObject jsonResponse = JsonConvert.DeserializeObject<dynamic>(stringContent);
+            var result = new RegistrationResult();
+            result.Succes = response.IsSuccessStatusCode;
+            result.Message = jsonResponse.Value<string>("message");
+            return result;
+        }
     }
 
 }

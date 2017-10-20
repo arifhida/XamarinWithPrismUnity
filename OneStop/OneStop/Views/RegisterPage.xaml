@@ -14,7 +14,7 @@
             <Entry Text="{Binding Email}" Placeholder="Email"/>
             <Entry Text="{Binding Password}" Placeholder="Password"/>
             <Entry Text="{Binding Confirmation}" Placeholder="Confirmation"/>
-            <Button Command="{Binding RegisterCommand}"
+            <Button Command="{Binding OnRegisterCommand}"
                 Text="Register" />
         </StackLayout>
     </ContentPage.Content>

@@ -12,6 +12,6 @@ namespace OneStop.IServices
         Task<bool> LoginAsync(string Username, string Password);
         List<MasterItem> GetMenus(bool isLogin);
 
-        //Task<bool> RegisterAsync()
+        Task<RegistrationResult> RegisterAsync(RegisterModel register);
     }
 }

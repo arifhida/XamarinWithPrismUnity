@@ -49,6 +49,7 @@
     <Compile Include="ViewModels\MasterPageViewModel.cs" />
     <Compile Include="ViewModels\NavigateViewModel.cs" />
     <Compile Include="ViewModels\RegisterPageViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>

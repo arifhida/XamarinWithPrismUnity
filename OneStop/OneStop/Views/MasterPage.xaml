@@ -3,14 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              Padding="0,40,0,0"
              x:Class="OneStop.Views.MasterPage"
              Title="Menu App"
              Icon="hamburger.png">
     <StackLayout>
-        <ListView x:Name="listView" SeparatorVisibility="None" ItemsSource="{Binding itemList}">
+        <ListView x:Name="listView" SeparatorVisibility="None" ItemsSource="{Binding listMenu}">
             <ListView.Behaviors>
-                
+                <b:EventToCommandBehavior EventName="ItemTapped" Command="{Binding OnItemTappedCommand }"
+                                          EventArgsParameterPath="Item.Navigation"/>
             </ListView.Behaviors>
             <ListView.ItemTemplate>
                 <DataTemplate>

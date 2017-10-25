@@ -17,6 +17,14 @@ namespace OneStop.Services
         HttpClient client = new HttpClient();
         private string url = "http://10.0.2.2:8000/";
 
+        public async Task<JObject> GetHome()
+        {
+            var response = await client.GetAsync(string.Format("{0}/home/products", url));
+            var stringContent = await response.Content.ReadAsStringAsync();
+            JObject content = JsonConvert.DeserializeObject<dynamic>(stringContent);
+            return content;
+        }
+
         public List<MasterItem> GetMenus(bool isLogin)
         {
             var menus = new List<MasterItem>();

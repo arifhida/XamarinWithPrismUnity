@@ -15,5 +15,8 @@
                 </Image.TranslationY>
             </Image>
         </Grid>
+        <ListView>
+            
+        </ListView>
     </Grid>
 </ContentPage>

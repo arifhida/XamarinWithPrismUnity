@@ -1,4 +1,5 @@
-﻿using OneStop.Models;
+﻿using Newtonsoft.Json.Linq;
+using OneStop.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,7 @@ namespace OneStop.IServices
         List<MasterItem> GetMenus(bool isLogin);
 
         Task<RegistrationResult> RegisterAsync(RegisterModel register);
+
+        Task<JObject> GetHome();
     }
 }

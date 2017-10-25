@@ -37,7 +37,9 @@
   <ItemGroup>
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="IServices\IAuthService.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\MasterItem.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Models\RegistrationResult.cs" />
     <Compile Include="Models\token.cs" />

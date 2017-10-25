@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace OneStop.Models
 {
-    public class Category
+    public class Category : List<Product>
     {        
-        public string name { get; set; }        
-        public List<Product> products { get; set; }
+        public string name { get; set; }
+        public List<Product> products => this;
     }
 }

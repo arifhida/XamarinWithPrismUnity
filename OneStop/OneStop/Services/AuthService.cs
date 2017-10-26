@@ -17,11 +17,11 @@ namespace OneStop.Services
         HttpClient client = new HttpClient();
         private string url = "http://10.0.2.2:8000/";
 
-        public async Task<JObject> GetHome()
+        public async Task<IList<Category>> GetHome()
         {
             var response = await client.GetAsync(string.Format("{0}/home/products", url));
             var stringContent = await response.Content.ReadAsStringAsync();
-            JObject content = JsonConvert.DeserializeObject<dynamic>(stringContent);
+            IList<Category> content = JsonConvert.DeserializeObject<IList<Category>>(stringContent);
             return content;
         }
 
@@ -31,6 +31,7 @@ namespace OneStop.Services
             menus.Add(new MasterItem() { Title = "Home", IconSource="", Navigation = "/Initial/Navigate/MainPage" });
             menus.Add(new MasterItem() { Title = "About", IconSource = "", Navigation = "/Initial/Navigate/MainPage" });
             menus.Add(new MasterItem() { Title = "Login", IconSource = "", IsLoggedIn = false, Navigation= "/Initial/Navigate/LoginPage" });
+            menus.Add(new MasterItem() { Title = "Register", IconSource = "", IsLoggedIn = false, Navigation = "/Initial/Navigate/RegisterPage" });
 
             return menus.Where(x => x.IsLoggedIn == null || x.IsLoggedIn == isLogin).ToList();
 

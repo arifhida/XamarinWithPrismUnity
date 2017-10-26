@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace OneStop.ViewModels
 {
-    public class RegisterPageViewModel : BindableBase
+    public class RegisterPageViewModel : ViewModelBase
     {
         private string _Name;
 

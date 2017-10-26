@@ -19,5 +19,6 @@ namespace OneStop.Models
         public DateTime created { get; set; }
         public int category_id { get; set; }
         public int sub_category_id { get; set; }
+        public List<Image> images { get; set; }
     }
 }

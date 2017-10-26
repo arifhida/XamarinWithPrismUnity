@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="OneStop.Views.DetailPage"
+             xmlns:cv="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
+             Title="{Binding product_name}">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" 
+                     Padding="10" VerticalOptions="CenterAndExpand">
+            
+
+            <cv:CarouselView ItemsSource="{Binding images}" VerticalOptions="Start" HeightRequest="600">
+                <cv:CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding image_url}" Aspect="AspectFit" />
+                    </DataTemplate>
+                </cv:CarouselView.ItemTemplate>
+            </cv:CarouselView>
+            <Label Text="{Binding product_name}" HorizontalOptions="Center" 
+                   FontSize="Large" FontAttributes="Bold"/>
+            <Label Text="{Binding description}" HorizontalOptions="CenterAndExpand" FontSize="Medium" />
+            <Label Text="{Binding price, StringFormat='Rp.{0:#,#.#}'}" FontSize="Medium" HorizontalOptions="Center"/>
+            <!--<StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand">
+                
+            </StackLayout>-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

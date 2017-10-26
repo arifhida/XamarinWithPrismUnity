@@ -3,13 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              x:Class="OneStop.Views.MainPage"
              ItemsSource="{Binding categories}"
              Title="1 Stop">
     <TabbedPage.ItemTemplate>
         <DataTemplate>
             <ContentPage Title="{Binding name}">
-                <ListView ItemsSource="{Binding products}">                    
+                <ListView ItemsSource="{Binding products}" ItemTapped="OnItemTapped">
+                    <!--<ListView.Behaviors>
+                        <b:EventToCommandBehavior EventName="ItemTapped" Command="{Binding OnItemTappedCommand}"
+                                                  EventArgsParameterPath="Item"/>
+                    </ListView.Behaviors>-->
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ImageCell Text="{Binding product_name}" Detail="{Binding description}"

@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace OneStop.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TabbedPage : TabbedPage
+    public partial class DetailPage : ContentPage
     {
-        public TabbedPage()
+        public DetailPage()
         {
             InitializeComponent();
         }

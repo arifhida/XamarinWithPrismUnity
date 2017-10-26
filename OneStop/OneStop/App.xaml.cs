@@ -27,6 +27,8 @@ namespace OneStop
             Container.RegisterTypeForNavigation<Navigate>();
             Container.RegisterTypeForNavigation<MasterPage>();
             Container.RegisterTypeForNavigation<LoginPage>();
+            Container.RegisterTypeForNavigation<DetailPage>();
+            Container.RegisterTypeForNavigation<CategoryPage>();
         }
     }
 }

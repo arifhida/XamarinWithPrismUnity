@@ -16,5 +16,7 @@ namespace OneStop.IServices
         Task<RegistrationResult> RegisterAsync(RegisterModel register);
 
         Task<IList<Category>> GetHome();
+
+        Task<UserData> GetProfile();
     }
 }

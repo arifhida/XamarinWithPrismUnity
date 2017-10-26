@@ -29,12 +29,25 @@ namespace OneStop.Services
         {
             var menus = new List<MasterItem>();
             menus.Add(new MasterItem() { Title = "Home", IconSource="", Navigation = "/Initial/Navigate/MainPage" });
-            menus.Add(new MasterItem() { Title = "About", IconSource = "", Navigation = "/Initial/Navigate/MainPage" });
+            menus.Add(new MasterItem() { Title = "Profile", IconSource = "", Navigation = "/Initial/Navigate/UserProfilePage", IsLoggedIn = true });
             menus.Add(new MasterItem() { Title = "Login", IconSource = "", IsLoggedIn = false, Navigation= "/Initial/Navigate/LoginPage" });
             menus.Add(new MasterItem() { Title = "Register", IconSource = "", IsLoggedIn = false, Navigation = "/Initial/Navigate/RegisterPage" });
 
             return menus.Where(x => x.IsLoggedIn == null || x.IsLoggedIn == isLogin).ToList();
 
+        }
+
+        public async Task<UserData> GetProfile()
+        {
+            var accessToken = Settings.access_token;
+            client.DefaultRequestHeaders.Add("Authorization", string.Format("Bearer {0}", accessToken));
+            //client.DefaultRequestHeaders.Add("Content-Type", "application/json");
+            var response = await client.GetAsync(string.Format("{0}/api/getuserdetails", url));
+            var stringContent = await response.Content.ReadAsStringAsync();
+            JObject result = JsonConvert.DeserializeObject<dynamic>(stringContent);
+            JObject data = result.Value<JObject>("data");
+            UserData userData = JsonConvert.DeserializeObject<UserData>(data.ToString());           
+            return userData;            
         }
 
         public async Task<bool> LoginAsync(string Username, string Password)
@@ -51,8 +64,7 @@ namespace OneStop.Services
                 var accessToken = token.Value<string>("access_token");
                 Settings.access_token = accessToken;
             }
-
-
+            
             return response.IsSuccessStatusCode;
         }
 

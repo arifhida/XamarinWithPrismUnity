@@ -6,14 +6,34 @@
              x:Class="OneStop.Views.UserProfilePage"
              Title="User Profile">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical">
+        <ScrollView>
+            <AbsoluteLayout BackgroundColor="#1E88E5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <BoxView BackgroundColor="Gray" AbsoluteLayout.LayoutBounds="0,0,1,300" AbsoluteLayout.LayoutFlags="XProportional,YProportional,WidthProportional" />
+                <Button BackgroundColor="White" AbsoluteLayout.LayoutBounds=".5,105,100,100" AbsoluteLayout.LayoutFlags="XProportional" />
+                <Image BackgroundColor="White" AbsoluteLayout.LayoutBounds=".5,110,90,90" AbsoluteLayout.LayoutFlags="XProportional" />
+                <StackLayout Orientation="Horizontal" AbsoluteLayout.LayoutBounds="0,310,1,50" AbsoluteLayout.LayoutFlags="WidthProportional" Padding="40,0,0,0">
+                    <Label FontSize="Large" Text="Name:     " TextColor="White"/>
+                    <Label FontSize="Large" FontAttributes="Bold" Text="{Binding data.user.name}" TextColor="White"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" AbsoluteLayout.LayoutBounds="0,345,1,50" AbsoluteLayout.LayoutFlags="WidthProportional" Padding="40,0,0,0">
+                    <Label FontSize="Large" Text="Email:      " TextColor="White"/>
+                    <Label FontSize="Large" FontAttributes="Bold" Text="{Binding data.user.email}" TextColor="White"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" AbsoluteLayout.LayoutBounds="0,380,1,50" AbsoluteLayout.LayoutFlags="WidthProportional" Padding="40,0,0,0">
+                    <Label FontSize="Large" Text="Balance:  " TextColor="White"/>
+                    <Label FontSize="Large" FontAttributes="Bold" Text="{Binding data.balance,  StringFormat='Rp.{0:#,#.#}'}" TextColor="White"/>
+                </StackLayout>
+            </AbsoluteLayout>
+            
+        </ScrollView>
+        <!--<StackLayout Orientation="Vertical">
             <StackLayout.Padding>
                 <OnIdiom x:TypeArguments="Thickness">
                     <OnIdiom.Phone>40,0,40,0</OnIdiom.Phone>
                     <OnIdiom.Tablet>140,150,140,0</OnIdiom.Tablet>
                 </OnIdiom>
             </StackLayout.Padding>
-            <!--<Label Text="{Binding user.name}" />-->
-        </StackLayout>
+            <Label Text="{Binding data.user.name}" HorizontalOptions="Center" FontSize="Medium" />
+        </StackLayout>-->
     </ContentPage.Content>
 </ContentPage>

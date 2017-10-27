@@ -16,12 +16,12 @@ namespace OneStop.ViewModels
         IPageDialogService _dialogService;
         INavigationService _navigationService;
 
-        private UserData _user;
+        private UserData _data;
 
-        public UserData user
+        public UserData data
         {
-            get { return _user; }
-            set { SetProperty(ref _user, value); }
+            get { return _data; }
+            set { SetProperty(ref _data, value); }
         }
 
 
@@ -34,8 +34,8 @@ namespace OneStop.ViewModels
 
         public override async void OnNavigatedTo(NavigationParameters parameters)
         {
-            if (user == null)
-                user = await _authservice.GetProfile();
+            if (data == null)
+                data = await _authservice.GetProfile();
         }
     }
 }

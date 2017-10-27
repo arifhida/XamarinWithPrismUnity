@@ -21,6 +21,7 @@ namespace OneStop
         protected override void RegisterTypes()
         {
             Container.RegisterType<IAuthService, AuthService>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IDataService, DataService>(new ContainerControlledLifetimeManager());
             Container.RegisterTypeForNavigation<NavigationPage>();
             Container.RegisterTypeForNavigation<MainPage>();
             Container.RegisterTypeForNavigation<Initial>();

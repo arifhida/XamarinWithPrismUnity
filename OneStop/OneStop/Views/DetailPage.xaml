@@ -22,6 +22,9 @@
                    FontSize="Large" FontAttributes="Bold"/>
             <Label Text="{Binding description}" HorizontalOptions="CenterAndExpand" FontSize="Medium" />
             <Label Text="{Binding price, StringFormat='Rp.{0:#,#.#}'}" FontSize="Medium" HorizontalOptions="Center"/>
+            <Button Text="Add to Cart"  TextColor="White" BorderRadius="25"
+                  BackgroundColor="Gray" HorizontalOptions="Center" Command="{Binding onAddToCart}"
+                    FontSize="Large" FontAttributes="Bold" />
             <!--<StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand">
                 
             </StackLayout>-->

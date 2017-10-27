@@ -11,12 +11,13 @@ namespace OneStop.IServices
     public interface IAuthService
     {
         Task<bool> LoginAsync(string Username, string Password);
+
         List<MasterItem> GetMenus(bool isLogin);
 
         Task<RegistrationResult> RegisterAsync(RegisterModel register);
 
-        Task<IList<Category>> GetHome();
-
         Task<UserData> GetProfile();
+
+        
     }
 }

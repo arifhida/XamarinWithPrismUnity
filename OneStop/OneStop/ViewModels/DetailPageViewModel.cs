@@ -8,12 +8,13 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace OneStop.ViewModels
 {
 	public class DetailPageViewModel : ViewModelBase
 	{
-        IAuthService _authservice;
+        IDataService _dataservice;
         IPageDialogService _dialogService;
         INavigationService _navigationService;
 
@@ -42,6 +43,15 @@ namespace OneStop.ViewModels
             set { SetProperty(ref _price, value); }
         }
 
+        private int _product_id;
+
+        public int product_id
+        {
+            get { return _product_id; }
+            set { SetProperty(ref _product_id, value); }
+        }
+
+
         private ObservableCollection<Image> _images;
 
         public ObservableCollection<Image> images
@@ -50,13 +60,27 @@ namespace OneStop.ViewModels
             set { SetProperty(ref _images, value); }
         }
 
+        public DelegateCommand onAddToCart { get; set; }
 
-        public DetailPageViewModel(IAuthService authservice, IPageDialogService dialogService,
+        public DetailPageViewModel(IDataService dataservice, IPageDialogService dialogService,
             INavigationService navigationService)
         {
-            _authservice = authservice;
+            _dataservice = dataservice;
             _dialogService = dialogService;
             _navigationService = navigationService;
+            onAddToCart = new DelegateCommand(async () => await AddToCart());
+        }
+
+        private async Task AddToCart()
+        {
+            var result = await _dataservice.AddToCart(product_id, 1);
+            if (result)
+            {
+                await _dialogService.DisplayAlertAsync("Success", string.Format("{0} successfully added to Cart",product_name), "OK");
+                await _navigationService.GoBackAsync();
+            }else
+                await _dialogService.DisplayAlertAsync("Error", string.Format("There is something wrong with {0}", product_name), "OK");
+
         }
 
         public override void OnNavigatedTo(NavigationParameters parameters)
@@ -64,6 +88,7 @@ namespace OneStop.ViewModels
             var param = parameters["item"];
             if(param != null)
             {
+                product_id = ((Product)param).id;
                 product_name = ((Product)param).product_name;
                 price = ((Product)param).price;
                 description = ((Product)param).description;
@@ -71,5 +96,8 @@ namespace OneStop.ViewModels
             }
         }
 
+
+        
+        
     }
 }

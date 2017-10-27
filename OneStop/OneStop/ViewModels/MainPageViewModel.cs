@@ -10,7 +10,7 @@ namespace OneStop.ViewModels
     public class MainPageViewModel : ViewModelBase
     {
 
-        IAuthService _authservice;
+        IDataService _dataservice;
         IPageDialogService _dialogService;
         INavigationService _navigationService;
         
@@ -25,10 +25,10 @@ namespace OneStop.ViewModels
         }
 
 
-        public MainPageViewModel(IAuthService authservice, IPageDialogService dialogService,
+        public MainPageViewModel(IDataService dataservice, IPageDialogService dialogService,
             INavigationService navigationService)
         {
-            _authservice = authservice;
+            _dataservice = dataservice;
             _dialogService = dialogService;
             _navigationService = navigationService;
             OnItemTappedCommand = new DelegateCommand<object>(ItemTapped);
@@ -42,7 +42,7 @@ namespace OneStop.ViewModels
         public override async void OnNavigatedTo(NavigationParameters parameters)
         {
             if (categories == null)
-                categories = new ObservableCollection<Category>(await _authservice.GetHome());
+                categories = new ObservableCollection<Category>(await _dataservice.GetHome());
         }
 
         private async void ItemTapped(object item)

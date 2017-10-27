@@ -17,19 +17,13 @@ namespace OneStop.Services
         HttpClient client = new HttpClient();
         private string url = "http://10.0.2.2:8000/";
 
-        public async Task<IList<Category>> GetHome()
-        {
-            var response = await client.GetAsync(string.Format("{0}/home/products", url));
-            var stringContent = await response.Content.ReadAsStringAsync();
-            IList<Category> content = JsonConvert.DeserializeObject<IList<Category>>(stringContent);
-            return content;
-        }
+        
 
         public List<MasterItem> GetMenus(bool isLogin)
         {
             var menus = new List<MasterItem>();
             menus.Add(new MasterItem() { Title = "Home", IconSource="", Navigation = "/Initial/Navigate/MainPage" });
-            menus.Add(new MasterItem() { Title = "Profile", IconSource = "", Navigation = "/Initial/Navigate/UserProfilePage", IsLoggedIn = true });
+            menus.Add(new MasterItem() { Title = "My Account", IconSource = "", Navigation = "/Initial/Navigate/UserProfilePage", IsLoggedIn = true });
             menus.Add(new MasterItem() { Title = "Login", IconSource = "", IsLoggedIn = false, Navigation= "/Initial/Navigate/LoginPage" });
             menus.Add(new MasterItem() { Title = "Register", IconSource = "", IsLoggedIn = false, Navigation = "/Initial/Navigate/RegisterPage" });
 
@@ -40,7 +34,8 @@ namespace OneStop.Services
         public async Task<UserData> GetProfile()
         {
             var accessToken = Settings.access_token;
-            client.DefaultRequestHeaders.Add("Authorization", string.Format("Bearer {0}", accessToken));
+            if (client.DefaultRequestHeaders.Where(x => x.Key == "Authorization").Count() < 1)
+                client.DefaultRequestHeaders.Add("Authorization", string.Format("Bearer {0}", accessToken));
             //client.DefaultRequestHeaders.Add("Content-Type", "application/json");
             var response = await client.GetAsync(string.Format("{0}/api/getuserdetails", url));
             var stringContent = await response.Content.ReadAsStringAsync();
@@ -84,6 +79,8 @@ namespace OneStop.Services
             result.Message = jsonResponse.Value<string>("message");
             return result;
         }
+
+
     }
 
 }

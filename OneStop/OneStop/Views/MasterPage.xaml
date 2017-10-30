@@ -21,7 +21,8 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="30"/>
                                 <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>                            
+                            </Grid.ColumnDefinitions>
+                            <!--<Image Grid.Column="0" Source="{Binding IconSource}" />-->
                             <Label Grid.Column="1" Text="{Binding Title}" VerticalOptions="FillAndExpand" />
                         </Grid>
                     </ViewCell>

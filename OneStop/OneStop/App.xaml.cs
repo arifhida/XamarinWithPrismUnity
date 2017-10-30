@@ -31,6 +31,7 @@ namespace OneStop
             Container.RegisterTypeForNavigation<DetailPage>();
             Container.RegisterTypeForNavigation<CategoryPage>();
             Container.RegisterTypeForNavigation<UserProfilePage>();
+            Container.RegisterTypeForNavigation<ShoppingCartPage>();
         }
     }
 }

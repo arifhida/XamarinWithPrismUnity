@@ -11,5 +11,7 @@ namespace OneStop.IServices
     {
         Task<IList<Category>> GetHome();
         Task<bool> AddToCart(int productId, int quantity);
+        Task<Cart> GetCart();
+        Task<Cart> RemoveFromCart(int productId);
     }
 }

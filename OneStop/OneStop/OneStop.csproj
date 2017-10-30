@@ -38,6 +38,9 @@
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="IServices\IAuthService.cs" />
     <Compile Include="IServices\IDataService.cs" />
+    <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\CartDetail.cs" />
+    <Compile Include="Models\CartTotal.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\MasterItem.cs" />
@@ -58,6 +61,7 @@
     <Compile Include="ViewModels\NavigateViewModel.cs" />
     <Compile Include="ViewModels\CategoryPageViewModel.cs" />
     <Compile Include="ViewModels\RegisterPageViewModel.cs" />
+    <Compile Include="ViewModels\ShoppingCartPageViewModel.cs" />
     <Compile Include="ViewModels\UserProfilePageViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\DetailPage.xaml.cs">
@@ -77,6 +81,9 @@
     </Compile>
     <Compile Include="Views\RegisterPage.xaml.cs">
       <DependentUpon>RegisterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ShoppingCartPage.xaml.cs">
+      <DependentUpon>ShoppingCartPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserProfilePage.xaml.cs">
       <DependentUpon>UserProfilePage.xaml</DependentUpon>
@@ -197,6 +204,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\UserProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ShoppingCartPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -22,8 +22,9 @@ namespace OneStop.Services
         public List<MasterItem> GetMenus(bool isLogin)
         {
             var menus = new List<MasterItem>();
-            menus.Add(new MasterItem() { Title = "Home", IconSource="", Navigation = "/Initial/Navigate/MainPage" });
+            menus.Add(new MasterItem() { Title = "Home", IconSource= "ic_home_black_24dp", Navigation = "/Initial/Navigate/MainPage" });
             menus.Add(new MasterItem() { Title = "My Account", IconSource = "", Navigation = "/Initial/Navigate/UserProfilePage", IsLoggedIn = true });
+            menus.Add(new MasterItem() { Title = "Shopping Cart", IconSource = "", Navigation = "/Initial/Navigate/ShoppingCartPage", IsLoggedIn = true });
             menus.Add(new MasterItem() { Title = "Login", IconSource = "", IsLoggedIn = false, Navigation= "/Initial/Navigate/LoginPage" });
             menus.Add(new MasterItem() { Title = "Register", IconSource = "", IsLoggedIn = false, Navigation = "/Initial/Navigate/RegisterPage" });
 

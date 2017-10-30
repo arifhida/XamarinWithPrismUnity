@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="OneStop.Views.ShoppingCartPage"
+             Title="My Shopping Cart">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="chartList" ItemsSource="{Binding cart.details}" RowHeight="100">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <!--<ImageCell Text="{Binding product.product_name}" Detail="{Binding product.description}"
+                                       ImageSource="{Binding product.images[0].image_url }"/>-->
+
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Delete" IsDestructive="True"
+                                          Command="{Binding BindingContext.DeleteItemCommand, Source={x:Reference chartList}}" 
+                                          CommandParameter="{Binding .}" />
+                            </ViewCell.ContextActions>                            
+                            <StackLayout VerticalOptions="FillAndExpand" Orientation="Vertical">
+                                <StackLayout Orientation="Horizontal" Padding="10">
+                                    <Image Aspect="AspectFit" HeightRequest="75" WidthRequest="75" 
+                                            Source="{Binding product.images[0].image_url}" />
+                                    <StackLayout Orientation="Vertical">
+                                        <Label Text="{Binding product.product_name}" FontSize="Large" />
+                                        <Label Text="{Binding product.description}" FontSize="Default" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>  
+                        </ViewCell>
+                        
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

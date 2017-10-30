@@ -30,12 +30,35 @@ namespace OneStop.Services
             return response.IsSuccessStatusCode;
         }
 
+        public async Task<Cart> GetCart()
+        {
+            var accessToken = Settings.access_token;
+            if (client.DefaultRequestHeaders.Where(x => x.Key == "Authorization").Count() < 1)
+                client.DefaultRequestHeaders.Add("Authorization", string.Format("Bearer {0}", accessToken));
+            var response = await client.GetAsync(string.Format("{0}/api/chart/get", url));
+            var stringContent = await response.Content.ReadAsStringAsync();
+            Cart result = JsonConvert.DeserializeObject<Cart>(stringContent);
+            return result;            
+        }
+
         public async Task<IList<Category>> GetHome()
         {
             var response = await client.GetAsync(string.Format("{0}/home/products", url));
             var stringContent = await response.Content.ReadAsStringAsync();
             IList<Category> content = JsonConvert.DeserializeObject<IList<Category>>(stringContent);
             return content;
+        }
+
+        public async Task<Cart> RemoveFromCart(int productId)
+        {
+            var accessToken = Settings.access_token;
+            if (client.DefaultRequestHeaders.Where(x => x.Key == "Authorization").Count() < 1)
+                client.DefaultRequestHeaders.Add("Authorization", string.Format("Bearer {0}", accessToken));
+            var response = await client.DeleteAsync(string.Format("{0}/api/chart/remove/{1}", url, productId));
+
+            var stringContent = await response.Content.ReadAsStringAsync();
+            Cart result = JsonConvert.DeserializeObject<Cart>(stringContent);
+            return result;
         }
     }
 }

@@ -8,6 +8,7 @@ namespace OneStop.Models
 {
     public class Cart
     {
+        public int id { get; set; }
         public CartTotal totals { get; set; }
         public List<CartDetail> details { get; set; }
     }

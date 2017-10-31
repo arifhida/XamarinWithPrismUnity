@@ -28,6 +28,8 @@ namespace OneStop.ViewModels
 
         public DelegateCommand<Object> DeleteItemCommand { get; set; }
 
+        public DelegateCommand OnCheckOut { get; set; }
+
 
         public ShoppingCartPageViewModel(IDataService dataservice, IPageDialogService dialogService, INavigationService navigationService)
         {
@@ -35,6 +37,15 @@ namespace OneStop.ViewModels
             _dialogService = dialogService;
             _navigationService = navigationService;
             DeleteItemCommand = new DelegateCommand<object>(delete);
+            OnCheckOut = new DelegateCommand(async () => await CheckOut());
+        }
+
+        private async Task CheckOut()
+        {
+            var p = new NavigationParameters();
+            p.Add("cartId", cart.id);
+            p.Add("TotalPrice",cart.totals.total_price);
+            await _navigationService.NavigateAsync("PaymentPage", p);
         }
 
         private async void delete(object obj)

@@ -7,7 +7,18 @@
              Title="My Shopping Cart">
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="chartList" ItemsSource="{Binding cart.details}" RowHeight="100">
+            <ListView x:Name="chartList" ItemsSource="{Binding cart.details}" 
+                      Footer="{Binding cart.totals.total_price}" 
+                      RowHeight="100">
+                <ListView.FooterTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Vertical" 
+                                Padding="10,5,5,10">
+                            <Label Text="{Binding .,  StringFormat='Total : Rp.{0:#,#.#}'}"
+                                   FontSize="Large"/>
+                        </StackLayout>
+                    </DataTemplate>                    
+                </ListView.FooterTemplate>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <!--<ImageCell Text="{Binding product.product_name}" Detail="{Binding product.description}"
@@ -25,6 +36,7 @@
                                             Source="{Binding product.images[0].image_url}" />
                                     <StackLayout Orientation="Vertical">
                                         <Label Text="{Binding product.product_name}" FontSize="Large" />
+                                        <Label Text="{Binding product.price, StringFormat='Price : Rp.{0:#,#.#}'}" FontSize="Default" />
                                         <Label Text="{Binding product.description}" FontSize="Default" />
                                     </StackLayout>
                                 </StackLayout>
@@ -36,4 +48,7 @@
             </ListView>
         </StackLayout>
     </ContentPage.Content>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Check Out" Order="Primary" Priority="0" Command="{Binding OnCheckOut}"  />
+    </ContentPage.ToolbarItems>
 </ContentPage>

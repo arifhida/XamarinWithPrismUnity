@@ -39,11 +39,16 @@ namespace OneStop.Services
                 client.DefaultRequestHeaders.Add("Authorization", string.Format("Bearer {0}", accessToken));
             //client.DefaultRequestHeaders.Add("Content-Type", "application/json");
             var response = await client.GetAsync(string.Format("{0}/api/getuserdetails", url));
-            var stringContent = await response.Content.ReadAsStringAsync();
-            JObject result = JsonConvert.DeserializeObject<dynamic>(stringContent);
-            JObject data = result.Value<JObject>("data");
-            UserData userData = JsonConvert.DeserializeObject<UserData>(data.ToString());           
-            return userData;            
+            if (response.IsSuccessStatusCode)
+            {
+                var stringContent = await response.Content.ReadAsStringAsync();
+                JObject result = JsonConvert.DeserializeObject<dynamic>(stringContent);
+                JObject data = result.Value<JObject>("data");
+                UserData userData = JsonConvert.DeserializeObject<UserData>(data.ToString());
+                return userData;
+            }
+            else
+                return null;
         }
 
         public async Task<bool> LoginAsync(string Username, string Password)

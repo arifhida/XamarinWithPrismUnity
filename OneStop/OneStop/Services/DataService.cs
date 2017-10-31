@@ -36,17 +36,43 @@ namespace OneStop.Services
             if (client.DefaultRequestHeaders.Where(x => x.Key == "Authorization").Count() < 1)
                 client.DefaultRequestHeaders.Add("Authorization", string.Format("Bearer {0}", accessToken));
             var response = await client.GetAsync(string.Format("{0}/api/chart/get", url));
-            var stringContent = await response.Content.ReadAsStringAsync();
-            Cart result = JsonConvert.DeserializeObject<Cart>(stringContent);
-            return result;            
+            if (response.IsSuccessStatusCode)
+            {
+                var stringContent = await response.Content.ReadAsStringAsync();
+                Cart result = JsonConvert.DeserializeObject<Cart>(stringContent);
+                return result;
+            }
+            else
+                return null;
         }
 
         public async Task<IList<Category>> GetHome()
         {
-            var response = await client.GetAsync(string.Format("{0}/home/products", url));
-            var stringContent = await response.Content.ReadAsStringAsync();
-            IList<Category> content = JsonConvert.DeserializeObject<IList<Category>>(stringContent);
-            return content;
+            var response = await client.GetAsync(string.Format("{0}/home/products", url));            
+            if (response.IsSuccessStatusCode)
+            {
+                var stringContent = await response.Content.ReadAsStringAsync();
+                IList<Category> content = JsonConvert.DeserializeObject<IList<Category>>(stringContent);
+                return content;
+            }
+            else
+                return null;
+        }
+
+        public async Task<IList<PaymentMethod>> GetPayment()
+        {
+            var accessToken = Settings.access_token;
+            if (client.DefaultRequestHeaders.Where(x => x.Key == "Authorization").Count() < 1)
+                client.DefaultRequestHeaders.Add("Authorization", string.Format("Bearer {0}", accessToken));
+            var response = await client.GetAsync(string.Format("{0}/api/paymentmethod", url));
+            if (response.IsSuccessStatusCode)
+            {
+                var stringContent = await response.Content.ReadAsStringAsync();
+                IList<PaymentMethod> content = JsonConvert.DeserializeObject<IList<PaymentMethod>>(stringContent);
+                return content;
+            }
+            else
+                return null;
         }
 
         public async Task<Cart> RemoveFromCart(int productId)
@@ -55,10 +81,14 @@ namespace OneStop.Services
             if (client.DefaultRequestHeaders.Where(x => x.Key == "Authorization").Count() < 1)
                 client.DefaultRequestHeaders.Add("Authorization", string.Format("Bearer {0}", accessToken));
             var response = await client.DeleteAsync(string.Format("{0}/api/chart/remove/{1}", url, productId));
-
-            var stringContent = await response.Content.ReadAsStringAsync();
-            Cart result = JsonConvert.DeserializeObject<Cart>(stringContent);
-            return result;
+            if (response.IsSuccessStatusCode)
+            {
+                var stringContent = await response.Content.ReadAsStringAsync();
+                Cart result = JsonConvert.DeserializeObject<Cart>(stringContent);
+                return result;
+            }
+            else
+                return null;
         }
     }
 }

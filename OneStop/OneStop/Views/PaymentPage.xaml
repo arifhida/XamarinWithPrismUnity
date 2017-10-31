@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="OneStop.Views.PaymentPage"
+             Title="Payment">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" Margin="10" Padding="50,10,50,10">
+            <StackLayout Orientation="Horizontal" 
+                         HorizontalOptions="FillAndExpand" Padding="20"
+                         BackgroundColor="Gray">
+                <Label HorizontalOptions="StartAndExpand" Text="Total : " FontAttributes="Bold" FontSize="Large"/>
+                <Label HorizontalOptions="EndAndExpand" Text="{Binding TotalPrice,  StringFormat='Rp.{0:#,#.#}'}" FontAttributes="Bold" FontSize="Large"/>
+            </StackLayout>
+            <StackLayout HorizontalOptions="FillAndExpand">
+                <Button Text="Pay with Paypal"  TextColor="White" BorderRadius="25"
+                                          BackgroundColor="Gray" HorizontalOptions="FillAndExpand" Command="{Binding onPayClick}"
+                                          CommandParameter="01"
+                                          FontSize="Large" FontAttributes="Bold" />
+            </StackLayout>
+            <StackLayout HorizontalOptions="FillAndExpand">
+                <Button Text="Pay with 1 Stop Walet"  TextColor="White" BorderRadius="25"
+                                          BackgroundColor="Gray" HorizontalOptions="FillAndExpand" Command="{Binding onPayClick}"
+                                          CommandParameter="02"
+                                          FontSize="Large" FontAttributes="Bold" />
+            </StackLayout>            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
